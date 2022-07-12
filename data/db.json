@@ -1,0 +1,15 @@
+{
+  "ids": {
+    "Customer": 1,
+    "Order": 7
+  },
+  "models": {
+    "Customer": {},
+    "Order": {
+      "2": "{\"id\":2,\"name\":\"Test\",\"my_customer_id\":2}",
+      "3": "{\"id\":3,\"name\":\"Test-Again\",\"my_customer_id\":3}",
+      "4": "{\"id\":4,\"name\":\"Jackass\",\"my_customer_id\":4}",
+      "5": "{\"id\":5,\"name\":\"Jackass-1\",\"my_customer_id\":5}"
+    }
+  }
+}

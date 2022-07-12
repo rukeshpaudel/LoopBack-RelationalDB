@@ -1,24 +1,31 @@
-import {Customer, CustomerRelations} from '../models'
-// import {DbDataSource} from '../datasources'
+import { Order, OrderRelations } from '../models';
+import {CustomerRepository} from '../repositories';
 import{
     DefaultCrudRepository,
     juggler,
+    HasManyRepositoryFactory,
     repository
-} from '@loopback/repository'
-
+} from '@loopback/repository';
 import {inject, Getter} from '@loopback/core';
-import { Order, OrderRelations } from "../models/order.model";
-import { CustomerRepository } from '.';
 
 export class OrderRepository extends DefaultCrudRepository<
     Order,
-    OrderRelations>
-    {
-        constructor(
-            @inject('datasources.db') protected db: juggler.DataSource,
-        )
+    typeof Order.prototype.id,
+    OrderRelations
+    > {
+        public readonly orders: HasManyRepositoryFactory<
+        Order,
+        typeof Order.prototype.id
+        >
+    
+    constructor(
+        @inject('datasources.db') protected db: juggler.DataSource,
+        @repository.getter('OrderRepository')
+        orderRepositoryGetter: Getter<OrderRepository>
+    )
     {
         super(Order, db)
+ 
         
     }
 }

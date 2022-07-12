@@ -2,7 +2,20 @@ import {Order} from './order.model'
 import {Entity, hasMany, property, model} from '@loopback/repository';
 
 
-@model()
+@model({
+  settings:{
+      foreignkey: {
+        fk_customer:{
+          name: 'fk_customer',
+          entity: 'Customer',
+          entityKey: 'id',
+          foreignKey: 'my_customer_id'
+        }
+
+      }
+
+  }
+})
 export class Customer extends Entity {
   @property({
     type: 'number',
@@ -18,14 +31,14 @@ export class Customer extends Entity {
   })
   name: string;
 
- 
+  constructor(data?: Partial<Customer>) {
+    super(data);
+  }
+  
 
   @hasMany(()=>Order,{keyTo: 'my_customer_id'})
   orders?: Order[];
 
-  constructor(data?: Partial<Customer>) {
-    super(data);
-  }
 }
 
 export interface CustomerRelations{

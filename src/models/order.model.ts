@@ -17,20 +17,23 @@ export class Order extends Entity
         required: true,
       })
       name: string;
-
+      
       @property({
         type: 'number',
       })
       my_customer_id: number; //foreign key
 
-
-      @belongsTo(()=>Customer,{name: 'customer'})
-      customerId: number
-
       constructor(data?: Partial<Order>)
       {
         super(data);
       }
+
+
+
+
+    //   @belongsTo(()=>Customer,{name: 'customer'})
+    //   customerId: number
+
 }
 
 export interface OrderRelations{
