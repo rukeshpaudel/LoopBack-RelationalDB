@@ -3,6 +3,9 @@ import {Customer} from '../models';
 import {Order} from '../models/order.model';
 import {CustomerRepository} from '../repositories/customer.repository';
 import {repository} from '@loopback/repository';
+// import {authenticate} from '@loopback/authentication';
+// @authenticate('jwt')
+
 
 export class CustomerOrdersController {
   constructor(

@@ -1,7 +1,9 @@
 import { belongsTo, Entity, model, property  } from "@loopback/repository";
 import { Customer, CustomerWithRelations } from "./customer.model";
 
-@model({name: 'orders'})
+@model({
+     name: 'orders',
+        })
 export class Order extends Entity
 {
     @property({
@@ -31,8 +33,8 @@ export class Order extends Entity
 
 
 
-    //   @belongsTo(()=>Customer,{name: 'customer'})
-    //   customerId: number
+     @belongsTo(()=>Customer,{name: 'customer'})
+       customerId: number
 
 }
 

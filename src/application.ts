@@ -10,6 +10,15 @@ import {ServiceMixin} from '@loopback/service-proxy';
 import path from 'path';
 import {MySequence} from './sequence';
 require('dotenv').config()
+import {AuthenticationComponent} from '@loopback/authentication';
+import {
+  JWTAuthenticationComponent,
+  SECURITY_SCHEME_SPEC,
+  UserServiceBindings,
+} from '@loopback/authentication-jwt';
+import {CustomerDataSource} from './datasources';
+
+
 
 export {ApplicationConfig};
 
@@ -41,5 +50,11 @@ export class CustomerApplication extends BootMixin(
         nested: true,
       },
     };
+
+    this.component(AuthenticationComponent);
+
+    this.component(JWTAuthenticationComponent);
+
+    this.dataSource(CustomerDataSource, UserServiceBindings.DATASOURCE_NAME);
   }
 }
