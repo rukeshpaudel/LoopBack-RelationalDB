@@ -16,6 +16,7 @@ import {Entity, hasMany, property, model} from '@loopback/repository';
 
   }
 })
+
 export class Customer extends Entity {
   @property({
     type: 'number',

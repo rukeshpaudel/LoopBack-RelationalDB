@@ -1,5 +1,5 @@
 import { Customer, CustomerRelations } from '../models';
-import { Order } from '../models/order.model';
+import { Order } from '../models/';
 import {OrderRepository} from '../repositories';
 import{
     DefaultCrudRepository,
@@ -17,7 +17,7 @@ export class CustomerRepository extends DefaultCrudRepository<
         public readonly orders: HasManyRepositoryFactory<
         Order,
         typeof Customer.prototype.id
-        >
+        >;
     
     constructor(
         @inject('datasources.db') protected db: juggler.DataSource,
@@ -29,6 +29,6 @@ export class CustomerRepository extends DefaultCrudRepository<
         this.orders = this.createHasManyRepositoryFactoryFor(
             'orders',
             orderRepositoryGetter
-        )
+       )
     }
 }

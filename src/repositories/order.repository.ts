@@ -13,19 +13,21 @@ export class OrderRepository extends DefaultCrudRepository<
     typeof Order.prototype.id,
     OrderRelations
     > {
-        public readonly orders: HasManyRepositoryFactory<
-        Order,
-        typeof Order.prototype.id
-        >
+       // public readonly orders: HasManyRepositoryFactory<
+        //Order,
+        //typeof Order.prototype.id
+       // >
     
     constructor(
         @inject('datasources.db') protected db: juggler.DataSource,
-        @repository.getter('OrderRepository')
-        orderRepositoryGetter: Getter<OrderRepository>
+        //@repository.getter('OrderRepository')
+        //orderRepositoryGetter: Getter<OrderRepository>
     )
     {
         super(Order, db)
- 
-        
+        // this.orders = this.createHasManyRepositoryFactoryFor(
+        //     'orders',
+        //     orderRepositoryGetter
+        // )
     }
 }

@@ -4,27 +4,22 @@ import {juggler} from '@loopback/repository';
 const config = {
   name: 'db',
   connector: 'postgresql',
-  url: '',
-  host: process.env.DB_HOST,
-  port: process.env.PORT,
-  user: process.env.USER,
-  password: process.env.PASSWORD,
-  database: process.env.DATABASE,
-  min:5,
-  max:200,
-  idleTimeoutMillis: 60000,
-  connectionTimeoutMillis: 0,
-  ssl: false
+  // url: '',
+  host: 'localhost',
+  port: 5432,
+  user: 'postgres',
+  password: 'ruke$#p@udel',
+  database: 'test',
 };
 
 @lifeCycleObserver('datasource')
 export class CustomerDataSource extends juggler.DataSource
   implements LifeCycleObserver {
-  static dataSourceName = 'customer';
+  static dataSourceName = 'db';
   static readonly defaultConfig = config;
 
   constructor(
-    @inject('datasources.config.customer', {optional: true})
+    @inject('datasources.config.db', {optional: true})
     dsConfig: object = config,
   ) {
     super(dsConfig);
