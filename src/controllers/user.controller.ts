@@ -19,9 +19,9 @@ import {
 import {SecurityBindings, securityId, UserProfile} from '@loopback/security';
 import {genSalt, hash} from 'bcryptjs';
 import _ from 'lodash';
+import {Users} from '../models';
 
-@model({name: 'users'})
-export class NewUserRequest extends User {
+export class NewUserRequest extends Users {
   @property({
     type: 'string',
     required: true,
@@ -135,18 +135,20 @@ export class UserController {
     @requestBody({
       content: {
         'application/json': {
-          schema: getModelSchemaRef(NewUserRequest, {
+          schema: getModelSchemaRef(User, {
             title: 'NewUser',
           }),
         },
       },
     })
-    newUserRequest: NewUserRequest,
+    newUserRequest: Omit<User,"id">,
   ): Promise<User> {
     const password = await hash(newUserRequest.password, await genSalt());
     const savedUser = await this.userRepository.create(
       _.omit(newUserRequest, 'password'),
     );
+
+    // await this.userRepository.findCredentials(savedUser.id)//.create({password});
 
     await this.userRepository.userCredentials(savedUser.id).create({password});
 

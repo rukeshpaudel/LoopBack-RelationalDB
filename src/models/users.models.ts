@@ -4,7 +4,7 @@ import { Entity,property,model } from "@loopback/repository";
     name: 'users',
 })
 
-export class User extends Entity{
+export class Users extends Entity{
     @property({
         type: 'number',
         id: true,
@@ -29,7 +29,6 @@ export class User extends Entity{
         postgresql: {
           columnName: 'password',
           dataType: 'VARCHAR',
-          dataLength: 20,
         },
       })
       password: string;
@@ -44,7 +43,7 @@ export class User extends Entity{
       })
       email: string;
     
-      constructor(data?: Partial<User>) {
+      constructor(data?: Partial<Users>) {
         super(data);
       }
 
@@ -52,4 +51,4 @@ export class User extends Entity{
 
 export interface UserRelations{}
 
-export type UserWithRelations = User & UserRelations
+export type UserWithRelations = Users & UserRelations

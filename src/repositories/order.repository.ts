@@ -1,5 +1,4 @@
 import { Order, OrderRelations } from '../models';
-import {CustomerRepository} from '../repositories';
 import{
     DefaultCrudRepository,
     juggler,
