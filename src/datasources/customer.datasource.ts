@@ -1,4 +1,4 @@
-import {asProvider, inject, lifeCycleObserver, LifeCycleObserver} from '@loopback/core';
+import {inject, lifeCycleObserver, LifeCycleObserver} from '@loopback/core';
 import {juggler} from '@loopback/repository';
 
 const config = {
@@ -13,7 +13,7 @@ const config = {
 };
 
 @lifeCycleObserver('datasource')
-export class CustomerDataSource extends juggler.DataSource
+export class DbDataSource extends juggler.DataSource
   implements LifeCycleObserver {
   static dataSourceName = 'db';
   static readonly defaultConfig = config;

@@ -16,7 +16,8 @@ import {
   SECURITY_SCHEME_SPEC,
   UserServiceBindings,
 } from '@loopback/authentication-jwt';
-import {CustomerDataSource} from './datasources';
+import {DbDataSource} from './datasources';
+import {CustomUserService} from './services/user.service'
 
 
 
@@ -55,6 +56,6 @@ export class CustomerApplication extends BootMixin(
 
     this.component(JWTAuthenticationComponent);
 
-    this.dataSource(CustomerDataSource, UserServiceBindings.DATASOURCE_NAME);
+    this.dataSource(DbDataSource, UserServiceBindings.DATASOURCE_NAME);
   }
 }
