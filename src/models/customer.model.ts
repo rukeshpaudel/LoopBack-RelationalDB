@@ -13,7 +13,6 @@ export class Customer extends Entity {
     postgresql: {
       columnName: 'id',
       dataType: 'VARCHAR',
-      dataLength: 20,
     },
   })
   id: number;
@@ -24,8 +23,7 @@ export class Customer extends Entity {
     postgresql: {
       columnName: 'username',
       dataType: 'VARCHAR',
-      dataLength: 20,
-      nullable: 'YES',
+      min: 5
     },
   })
   username: string;
@@ -34,8 +32,7 @@ export class Customer extends Entity {
     type: 'string',
     postgresql: {
       columnName: 'password',
-      dataType: 'VARCHAR',
-      dataLength: 20,
+      min: 8
     },
   })
   password: string;
@@ -45,7 +42,6 @@ export class Customer extends Entity {
     postgresql: {
       columnName: 'email',
       dataType: 'VARCHAR',
-      dataLength: 20,
     },
   })
   email: string;
