@@ -17,8 +17,9 @@ import {
   UserServiceBindings,
 } from '@loopback/authentication-jwt';
 import {DbDataSource} from './datasources';
+import { appendFile } from 'fs';
 // import {CustomUserService} from './services/user.service'
-
+//app.migrateSchema();
 
 
 export {ApplicationConfig};

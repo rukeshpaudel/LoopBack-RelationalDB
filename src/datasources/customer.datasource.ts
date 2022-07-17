@@ -4,7 +4,7 @@ import {juggler} from '@loopback/repository';
 const config = {
   name: 'db',
   connector: 'postgresql',
-  // url: '',
+  url: '',
   host: 'localhost',
   port: 5432,
   user: 'postgres',

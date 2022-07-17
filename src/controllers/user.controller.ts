@@ -32,7 +32,7 @@ password: string;
 const CredentialsSchema: SchemaObject= {
     type:'object',
     required:['email', 'password'],
-    properties:{
+    postgres:{
         email:{
             type: 'string',
             format: 'email'
@@ -85,13 +85,6 @@ export class UserController {
         responses: {
           '200': {
             description: 'User',
-            content: {
-              'application/json': {
-                schema: {
-                  'x-ts-type': User,
-                },
-              },
-            },
           },
         },
       })
@@ -112,7 +105,7 @@ export class UserController {
           _.omit(newUserRequest, 'password'),
         );
     
-        await this.userRepository.userCredentials(savedUser.id).create({password});
+      //  await this.userRepository.userCredentials(savedUser.id).create({password});
     
         return savedUser;
             // @post('/users/signup')

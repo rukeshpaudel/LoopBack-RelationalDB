@@ -1,23 +1,35 @@
 import {Entity, model, property} from '@loopback/repository';
 
-@model()
+@model({name: 'users'} )
 export class User extends Entity {
   @property({
-    type: 'number',
+    type: 'string',
     id: true,
-    generated: true,
+    generated: false,
+    postgresql: {
+      columnName: 'id',
+      dataType: 'VARCHAR',
+    },
   })
   id?: number;
 
   @property({
     type: 'string',
     required: true,
+    postgresql: {
+      columnName: 'email',
+      dataType: 'VARCHAR',
+    },
   })
   email: string;
 
   @property({
     type: 'string',
-    required: true,
+    required: false,
+    postgresql: {
+      columnName: 'password',
+      dataType: 'VARCHAR',
+    },
   })
   password: string;
 
