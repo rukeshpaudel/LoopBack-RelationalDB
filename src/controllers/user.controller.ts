@@ -23,7 +23,7 @@ import _ from 'lodash';
 export class NewUserRequest extends User {
 @property({
     type:'string',
-    required: false,
+    required: true,
 })
 password: string;
 
@@ -59,7 +59,8 @@ export class UserController {
       public userService: MyUserService,
       @inject(SecurityBindings.USER, {optional: true})
       public user: UserProfile,
-      @repository(UserRepository) protected userRepository: UserRepository,
+      @inject(UserServiceBindings.USER_REPOSITORY)
+      protected userRepository: UserRepository
     ) {}
 
     // @post('/users/login', {
@@ -98,14 +99,18 @@ export class UserController {
             },
           },
         })
+        
         newUserRequest: NewUserRequest,
       ): Promise<User> {
         const password = await hash(newUserRequest.password, await genSalt());
+        
+        
         const savedUser = await this.userRepository.create(
           _.omit(newUserRequest, 'password'),
-        );
-    
-      //  await this.userRepository.userCredentials(savedUser.id).create({password});
+          );
+          
+          await this.userRepository.userCredentials(savedUser.id).create({password});
+          console.log(password);
     
         return savedUser;
             // @post('/users/signup')

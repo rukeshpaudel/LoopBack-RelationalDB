@@ -3,12 +3,14 @@ import {Entity, model, property} from '@loopback/repository';
 @model({name: 'users'} )
 export class User extends Entity {
   @property({
-    type: 'string',
+    type: 'number',
     id: true,
-    generated: false,
+    generated: true,
+    required: false,
+    index: {"unique":true },
     postgresql: {
       columnName: 'id',
-      dataType: 'VARCHAR',
+      dataType: 'integer',
     },
   })
   id?: number;
@@ -16,6 +18,7 @@ export class User extends Entity {
   @property({
     type: 'string',
     required: true,
+    index: {"unique":true },
     postgresql: {
       columnName: 'email',
       dataType: 'VARCHAR',
@@ -25,7 +28,7 @@ export class User extends Entity {
 
   @property({
     type: 'string',
-    required: false,
+    //required: true,
     postgresql: {
       columnName: 'password',
       dataType: 'VARCHAR',
